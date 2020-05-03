@@ -54,7 +54,7 @@ class Command(models.Model):
     """
     name = models.CharField(_('command'), max_length=255)
     description = models.TextField(_('description'), blank=True)
-    source = models.ManyToManyField(Source, blank=True)
+    source = models.OneToManyField(Source, blank=True)
 
     class Meta:
         verbose_name = _('command')
@@ -119,7 +119,7 @@ class Argument(models.Model):
     name = models.CharField(_('name'), max_length=255)
     description = models.TextField(_('description'), blank=True)
     requirement = models.BooleanField(default=False)
-    needs_value = models.BooleanField(default=False)
+    needs_value = models.BooleanField(default=False) """I also saw this"""
     include = models.ManyToManyField('self', verbose_name=_("include"), blank=True, related_name='include', help_text="Choose mandatory parameters if this is set.")
     exclude = models.ManyToManyField('self', verbose_name=_("exclude"), blank=True, related_name='exclude', help_text="Choose parameters that should be excluded if this is set.")
 
